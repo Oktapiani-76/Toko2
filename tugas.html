@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kalcer – Toko Baju Anak Kalcer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#F3F3EF;--ink:#101A4A;--blue:#2340FF;--yellow:#FFD60A;--red:#E8342B;--card:#FFFFFF;--line:#101A4A;--on-blue:#FFFFFF;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1030;--ink:#F3F3EF;--card:#16205A;--line:#F3F3EF}}
+:root[data-theme="dark"]{--bg:#0B1030;--ink:#F3F3EF;--card:#16205A;--line:#F3F3EF}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.5}
+h1,h2,h3{font-family:'Bowlby One','Arial Black',Impact,sans-serif;font-weight:400;margin:0;line-height:.95}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:3px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+.logo{font-family:'Bowlby One','Arial Black',sans-serif;font-size:1.4rem;text-decoration:none;color:var(--ink)}
+.cartbtn{border:3px solid var(--line);background:var(--yellow);color:#101A4A;padding:8px 14px;border-radius:999px;font-weight:700}
+.hero{padding:40px 20px 28px;max-width:1100px;margin:0 auto}
+.hero h1{font-size:clamp(3.6rem,19vw,11rem);color:var(--blue);letter-spacing:-.02em}
+.hero h1 span{display:block;color:var(--ink);font-size:.34em;margin-top:.25em;letter-spacing:0}
+.hero p{max-width:46ch;font-size:1.1rem;margin:20px 0}
+.cta{display:inline-block;background:var(--blue);color:var(--on-blue);border:3px solid var(--line);padding:14px 26px;font-weight:700;text-decoration:none;border-radius:6px;box-shadow:5px 5px 0 var(--line)}
+.cta:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--line)}
+.ticker{background:var(--yellow);color:#101A4A;border-block:3px solid var(--line);overflow:hidden;white-space:nowrap;font-family:'Bowlby One','Arial Black',sans-serif;padding:10px 0}
+.ticker div{display:inline-block;animation:run 22s linear infinite}
+@keyframes run{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker div{animation:none}}
+main{max-width:1100px;margin:0 auto;padding:40px 20px}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px;margin-bottom:22px}
+.head h2{font-size:clamp(2rem,7vw,3.2rem)}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{border:2px solid var(--line);background:transparent;padding:6px 14px;border-radius:999px;font-weight:500}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
+.item{background:var(--card);border:3px solid var(--line);border-radius:6px;display:flex;flex-direction:column}
+.pic{aspect-ratio:1;border-bottom:3px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pic svg{width:78%;height:78%}
+.pic img{width:100%;height:100%;object-fit:cover}
+.info{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.info h3{font-size:1.05rem;line-height:1.15}
+.price{font-weight:700}
+.row{display:flex;gap:6px;flex-wrap:wrap}
+.row label{cursor:pointer}
+.row input{position:absolute;opacity:0}
+.row span{display:inline-block;min-width:36px;text-align:center;border:2px solid var(--line);border-radius:4px;padding:2px 8px;font-size:.85rem}
+.row input:checked+span{background:var(--ink);color:var(--bg)}
+.row input:focus-visible+span{outline:3px solid var(--red)}
+.add{margin-top:auto;border:2px solid var(--line);background:var(--yellow);color:#101A4A;font-weight:700;padding:9px;border-radius:4px}
+.info small{opacity:.75}
+.about{background:var(--blue);color:#fff;padding:48px 20px;border-block:3px solid var(--line)}
+.about div{max-width:1100px;margin:0 auto;display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.about h3{font-size:1.4rem;margin-bottom:8px;color:var(--yellow)}
+.about p{margin:0}
+footer{padding:28px 20px;text-align:center;font-size:.9rem}
+#veil{position:fixed;inset:0;background:rgba(10,15,40,.55);opacity:0;pointer-events:none;transition:opacity .25s;z-index:8}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bg);border-left:3px solid var(--line);transform:translateX(100%);transition:transform .3s;z-index:9;display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top,0px)) 18px calc(16px + env(safe-area-inset-bottom,0px))}
+body.open #drawer{transform:none}
+body.open #veil{opacity:1;pointer-events:auto}
+#drawer header{position:static;padding:0 0 12px}
+#lines{flex:1;overflow:auto;list-style:none;margin:0;padding:0}
+#lines li{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:2px dashed var(--line)}
+.qty button{border:2px solid var(--line);background:none;width:28px;height:28px;border-radius:4px}
+.empty{padding:30px 0;opacity:.8}
+.total{display:flex;justify-content:space-between;font-weight:700;font-size:1.2rem;padding:14px 0}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="tee" viewBox="0 0 200 200"><path d="M62 30 85 20q15 18 30 0l23 10 42 32-22 22-18-14v106H60V70L42 84 20 62Z" fill="currentColor" stroke="#101A4A" stroke-width="4" stroke-linejoin="round"/></symbol>
+<symbol id="hoodie" viewBox="0 0 200 200"><path d="M62 34 82 22q18 14 36 0l20 12 40 30-6 96-22 4-6-60v76H60v-76l-6 60-22-4-6-96Z" fill="currentColor" stroke="#101A4A" stroke-width="4" stroke-linejoin="round"/><path d="M82 22q18 36 36 0" fill="none" stroke="#101A4A" stroke-width="4"/><path d="M78 118h44v28H78z" fill="none" stroke="#101A4A" stroke-width="3"/></symbol>
+<symbol id="cap" viewBox="0 0 200 200"><path d="M36 128q-4-66 64-66t64 66q28 4 34 14-60-12-96-12-24 0-66 12Z" fill="currentColor" stroke="#101A4A" stroke-width="4" stroke-linejoin="round"/><circle cx="100" cy="62" r="6" fill="#101A4A"/></symbol>
+</svg>
+
+<header>
+  <a class="logo" href="#">KALCER</a>
+  <button class="cartbtn" id="open" aria-label="Buka keranjang">Keranjang (<span id="count">0</span>)</button>
+</header>
+
+<section class="hero">
+  <h1>KALCER<span>Baju buat yang jalan duluan.</span></h1>
+  <p>Kaos, hoodie, dan topi sablon lokal. Produksi kecil, desain dari anak-anak Bandung, bahan adem dan tahan cuci.</p>
+  <a class="cta" href="#produk">Lihat koleksi</a>
+</section>
+
+<div class="ticker" aria-hidden="true"><div>GRATIS ONGKIR DI ATAS RP350.000 &nbsp;★&nbsp; DROP BARU TIAP BULAN &nbsp;★&nbsp; BISA TUKAR UKURAN &nbsp;★&nbsp; GRATIS ONGKIR DI ATAS RP350.000 &nbsp;★&nbsp; DROP BARU TIAP BULAN &nbsp;★&nbsp; BISA TUKAR UKURAN &nbsp;★&nbsp;</div></div>
+
+<main id="produk">
+  <div class="head">
+    <h2>Koleksi</h2>
+    <div class="filters" id="filters" role="group" aria-label="Filter kategori"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<section class="about">
+  <div>
+    <article><h3>Sablon manual</h3><p>Tiap desain disablon plastisol, jadi warna tebal dan tidak gampang retak.</p></article>
+    <article><h3>Stok terbatas</h3><p>Satu desain dicetak maksimal 100 pcs. Habis ya habis.</p></article>
+    <article><h3>Tukar ukuran</h3><p>Kekecilan atau kebesaran? Tukar dalam 7 hari selama label masih terpasang.</p></article>
+  </div>
+</section>
+<footer>© 2026 Kalcer. Pesanan diproses lewat WhatsApp, Senin–Sabtu.</footer>
+
+<div id="veil"></div>
+<aside id="drawer" aria-label="Keranjang belanja">
+  <header><h2 style="font-size:1.6rem">Keranjang</h2><button class="cartbtn" id="close">Tutup</button></header>
+  <ul id="lines"></ul>
+  <div class="total"><span>Total</span><span id="total">Rp0</span></div>
+  <a class="cta" id="wa" href="#" style="text-align:center">Pesan lewat WhatsApp</a>
+</aside>
+
+<script>
+const WA = "6281234567890"; // ganti dengan nomor WhatsApp tokomu
+// Semua produk memakai foto (field img). Jika foto gagal dimuat, gambar vektor tampil sebagai cadangan.
+const P = [
+ {id:1,n:"Kaos Gaspol",c:"Kaos",p:125000,col:"#2340FF",s:"tee",t:"GASPOL",img:"kaos-gaspol.jpg"},
+ {id:2,n:"Kaos Anak Senja",c:"Kaos",p:119000,col:"#FFD60A",s:"tee",t:"SENJA",img:"kaos-anak-senja.jpg"},
+ {id:3,n:"Kaos Santuy Club",c:"Kaos",p:115000,col:"#E8342B",s:"tee",t:"SANTUY",img:"kaos-santuy-club.jpg"},
+ {id:4,n:"Kaos Lokal Pride",c:"Kaos",p:129000,col:"#F3F3EF",s:"tee",t:"LOKAL",img:"kaos-lokal-pride.jpg"},
+ {id:5,n:"Hoodie Begadang",c:"Hoodie",p:289000,col:"#101A4A",s:"hoodie",t:"BEGADANG",img:"hoodie-begadang.jpg"},
+ {id:6,n:"Hoodie Nongkrong",c:"Hoodie",p:275000,col:"#2340FF",s:"hoodie",t:"NONGKRONG",img:"hoodie-nongkrong.jpg"},
+ {id:7,n:"Topi Cabe",c:"Topi",p:89000,col:"#E8342B",s:"cap",t:"CABE",img:"topi-cabe.jpg"},
+ {id:8,n:"Topi Rebahan",c:"Topi",p:85000,col:"#FFD60A",s:"cap",t:"REBAHAN",img:"topi-rebahan.jpg"}
+];
+const rp = n => "Rp" + n.toLocaleString("id-ID");
+let cat = "Semua", cart = [];
+const $ = id => document.getElementById(id);
+
+function vektor(x){
+  const dark = ["#101A4A","#2340FF","#E8342B"].includes(x.col);
+  return `<svg viewBox="0 0 200 200" style="color:${x.col}" role="img" aria-label="${x.n}"><use href="#${x.s}"/>
+    ${x.s==="cap"?"":`<text x="100" y="${x.s==="hoodie"?108:100}" text-anchor="middle" font-family="Bowlby One,Arial Black,sans-serif" font-size="${x.t.length>7?13:17}" fill="${dark?"#FFD60A":"#101A4A"}">${x.t}</text>`}</svg>`;
+}
+function filters(){
+  $("filters").innerHTML = ["Semua","Kaos","Hoodie","Topi"].map(c =>
+    `<button aria-pressed="${c===cat}" data-c="${c}">${c}</button>`).join("");
+}
+function grid(){
+  $("grid").innerHTML = P.filter(x => cat==="Semua" || x.c===cat).map(x => {
+    const sizes = x.s==="cap" ? ["All"] : ["S","M","L","XL"];
+    return `<article class="item">
+      <div class="pic" style="background:${x.col==="#FFD60A"?"#2340FF":"#FFD60A"}">
+        <img src="${x.img}" alt="${x.n}" loading="lazy" data-id="${x.id}">
+      </div>
+      <div class="info"><h3>${x.n}</h3><span class="price">${rp(x.p)}</span>
+        <div class="row" role="radiogroup" aria-label="Ukuran ${x.n}">${sizes.map((z,i)=>`<label><input type="radio" name="sz${x.id}" value="${z}" ${i===(sizes.length>1?1:0)?"checked":""}><span>${z}</span></label>`).join("")}</div>
+        <button class="add" data-id="${x.id}">Tambah ke keranjang</button></div>
+    </article>`}).join("");
+  // Jika foto tidak ditemukan, ganti dengan gambar vektor
+  $("grid").querySelectorAll(".pic img").forEach(im => {
+    im.addEventListener("error", () => {
+      const x = P.find(p => p.id == im.dataset.id);
+      im.parentElement.innerHTML = vektor(x);
+    }, {once:true});
+  });
+}
+function render(){
+  const n = cart.reduce((a,l)=>a+l.q,0), t = cart.reduce((a,l)=>a+l.q*l.p,0);
+  $("count").textContent = n; $("total").textContent = rp(t);
+  $("lines").innerHTML = cart.length ? cart.map((l,i)=>`<li><div><strong>${l.n}</strong><br><small>Ukuran ${l.z} · ${rp(l.p)}</small></div>
+    <div class="qty"><button data-d="-1" data-i="${i}" aria-label="Kurangi">−</button> ${l.q} <button data-d="1" data-i="${i}" aria-label="Tambah">+</button></div></li>`).join("")
+    : `<li class="empty">Keranjang masih kosong. Pilih baju dulu dari koleksi.</li>`;
+  const msg = "Halo Kalcer, aku mau pesan:\n" + cart.map(l=>`- ${l.n} (${l.z}) x${l.q}`).join("\n") + `\nTotal: ${rp(t)}`;
+  $("wa").href = cart.length ? `https://wa.me/${WA}?text=${encodeURIComponent(msg)}` : "#";
+  $("wa").style.opacity = cart.length ? 1 : .5;
+}
+$("filters").onclick = e => { const c = e.target.dataset.c; if(c){cat=c;filters();grid();} };
+$("grid").onclick = e => {
+  if(!e.target.classList.contains("add")) return;
+  const id = e.target.dataset.id;
+  const x = P.find(p=>p.id==id), z = e.target.closest(".info").querySelector("input:checked").value;
+  const f = cart.find(l=>l.id==id && l.z===z);
+  f ? f.q++ : cart.push({id:x.id,n:x.n,p:x.p,z,q:1});
+  render(); document.body.classList.add("open");
+};
+$("lines").onclick = e => {
+  const i = e.target.dataset.i; if(i===undefined) return;
+  cart[i].q += +e.target.dataset.d; if(cart[i].q<1) cart.splice(i,1); render();
+};
+$("open").onclick = () => document.body.classList.add("open");
+$("close").onclick = $("veil").onclick = () => document.body.classList.remove("open");
+document.addEventListener("keydown", e => { if(e.key==="Escape") document.body.classList.remove("open"); });
+filters(); grid(); render();
+</script>
+</body>
+</html>
